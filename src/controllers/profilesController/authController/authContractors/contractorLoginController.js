@@ -1,5 +1,5 @@
 import { ContractorModel } from '../../../../database/models/contractorModel.js'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { configDotenv } from 'dotenv'
 configDotenv()

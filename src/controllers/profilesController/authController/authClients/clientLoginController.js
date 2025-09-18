@@ -1,6 +1,6 @@
 import { ClientModel } from '../../../../database/models/clientModel.js'
-import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
 import { configDotenv } from 'dotenv'
 configDotenv()
 

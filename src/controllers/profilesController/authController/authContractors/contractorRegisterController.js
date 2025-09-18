@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { ContractorModel } from '../../../../database/models/contractorModel.js'
 
 export class ContractorRegisterController {

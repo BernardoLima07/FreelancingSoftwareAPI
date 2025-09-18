@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { ClientModel } from '../../../../database/models/clientModel.js'
 
 export class ClientRegisterController {

@@ -3,7 +3,7 @@ import { ContractorModel } from '../database/models/contractorModel.js'
 import { JobModel } from '../database/models/jobModel.js'
 import { ContractModel } from '../database/models/contractModel.js'
 import { sequelize } from '../database/config.js'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 
 export async function seed () {
   try {
