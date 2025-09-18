@@ -17,8 +17,8 @@ sequelize
   })
   .then(() => {
     const PORT = process.env.API_PORT;
-    app.listen(PORT, () => {
-      console.log("API listening on...");
+    app.listen(PORT, () => { 
+      console.log("API listening on...", PORT);
     });
 
     setupRoutes(app);
