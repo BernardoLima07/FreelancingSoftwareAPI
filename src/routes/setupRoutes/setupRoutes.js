@@ -18,6 +18,7 @@ import { paymentRouter } from "../profilesRoutes/clientRoutes/processPaymentRout
 import { updateStatusRouter } from "../updateStatusRoutes/updateStatusRoute.js";
 import { checkToken } from "../../middlewares/checkToken.js";
 import { insertMoneyRouter } from "../profilesRoutes/clientRoutes/insertMoneyRoutes/insertMoneyRoute.js";
+import { listOfJobsRouter } from "../jobRoutes/listOfJobsRoutes/listOfJobsRoute.js";
 
 export const setupRoutes = (app) => {
   const routes = [
@@ -29,7 +30,8 @@ export const setupRoutes = (app) => {
     highestPayingClient,
     paymentRouter,
     updateStatusRouter,
-    insertMoneyRouter
+    insertMoneyRouter,
+    listOfJobsRouter
   ];
 
   const router = express.Router();
@@ -39,7 +41,7 @@ export const setupRoutes = (app) => {
       registerClientRouter,
       loginClientRouter,
       registerContractorRouter,
-      loginContractorRouter
+      loginContractorRouter,
     );
     router.use("/api/routes", checkToken, route);
   });
