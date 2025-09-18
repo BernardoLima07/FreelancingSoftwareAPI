@@ -5,7 +5,7 @@ export class MostProfitableJobsController {
     try {
       const mostProfitableJob = await JobModel.findAll({
         attributes: ["title", "description", "status", "payment_amount"],
-        order: [["payment_amount", "DESC"]],
+        order: [["payment_amount", "DESC"]], 
         limit: 10,
       });
 
