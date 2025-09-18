@@ -1,28 +1,28 @@
-import { setupRoutes } from "./routes/setupRoutes/setupRoutes.js";
-import { seed } from "./seed/seed.js";
-import express from "express";
-const app = express();
+import { setupRoutes } from './routes/setupRoutes/setupRoutes.js'
+import { seed } from './seed/seed.js'
+import express from 'express'
 
-import dotenv from "dotenv";
-dotenv.config();
+import dotenv from 'dotenv'
 
-app.use(express.json());
+import { sequelize } from './database/config.js'
+const app = express()
+dotenv.config()
 
-import { sequelize } from "./database/config.js";
+app.use(express.json())
 sequelize
   .sync()
   .then(() => {
-    console.log("Database listening on...");
-    return seed();
+    console.log('Database listening on...')
+    return seed()
   })
   .then(() => {
-    const PORT = process.env.API_PORT;
-    app.listen(PORT, () => { 
-      console.log("API listening on...", PORT);
-    });
+    const PORT = process.env.API_PORT
+    app.listen(PORT, () => {
+      console.log('API listening on...', PORT)
+    })
 
-    setupRoutes(app);
+    setupRoutes(app)
   })
   .catch((err) => {
-    console.error("Error:", err);
-  });
+    console.error('Error:', err)
+  })
