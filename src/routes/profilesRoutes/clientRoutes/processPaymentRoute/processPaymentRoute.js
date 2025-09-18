@@ -1,12 +1,12 @@
-import express from "express";
+import express from 'express'
 
-import { PaymentController } from "../../../../controllers/profilesController/clientController/processPayment/processPaymentController.js";
+import { PaymentController } from '../../../../controllers/profilesController/clientController/processPayment/processPaymentController.js'
 
-export const paymentRouter = express.Router();
+export const paymentRouter = express.Router()
 
-const paymentController = new PaymentController();
+const paymentController = new PaymentController()
 
 paymentRouter.post(
-  "/client/payment/:client_id/job/:job_id",
+  '/client/payment/:client_id/job/:job_id',
   paymentController.processPayment
-);
+)
