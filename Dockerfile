@@ -1,10 +1,10 @@
-FROM node:20-alpine
+FROM --platform=$BUILDPLATFORM node:20-bullseye
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN apk add --no-cache python3 g++ make
+RUN apt-get update && apt-get install -y python3 g++ make libc-dev
 RUN npm install
 
 COPY . .
