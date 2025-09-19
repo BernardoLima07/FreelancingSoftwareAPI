@@ -1,105 +1,104 @@
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
-import { configDotenv } from "dotenv";
+import { configDotenv } from 'dotenv'
 
-import { ContractorsRepository } from "../../repository/contractors/contractorsRepository.js";
+import { ContractorsRepository } from '../../repository/contractors/contractorsRepository.js'
 
 export class ContractorsService {
-  constructor() {
-    this.contractorsRepository = new ContractorsRepository();
+  constructor () {
+    this.contractorsRepository = new ContractorsRepository()
   }
 
-  async listContractors({
+  async listContractors ({
     limit = 10,
-    attributes = ["id", "name", "email", "balance"],
-    whereType = {},
+    attributes = ['id', 'name', 'email', 'balance'],
+    whereType = {}
   }) {
     return this.contractorsRepository.findAll({
-      limit: limit,
-      attributes: attributes,
-      whereType: whereType,
-    });
+      limit,
+      attributes,
+      whereType
+    })
   }
 
-  async getContractorById(contractorId) {
-    const contractor = await this.contractorsRepository.findById(contractorId);
+  async getContractorById (contractorId) {
+    const contractor = await this.contractorsRepository.findById(contractorId)
 
-    if (!contractor)
-      throw new Error(`Contractor with ID ${contractorId} not found`);
+    if (!contractor) { throw new Error(`Contractor with ID ${contractorId} not found`) }
 
-    return contractor;
+    return contractor
   }
 
-  async registerContractor({ name, email, password, balance = 0 }) {
-    const salt = await bcrypt.genSalt(12);
-    const passwordHash = await bcrypt.hash(password, salt);
+  async registerContractor ({ name, email, password, balance = 0 }) {
+    const salt = await bcrypt.genSalt(12)
+    const passwordHash = await bcrypt.hash(password, salt)
 
     if (!name || !email || !passwordHash) {
-      throw new Error("Name, email and password are required");
+      throw new Error('Name, email and password are required')
     }
 
     const existingContractor = await this.contractorsRepository.findOne({
-      email,
-    });
+      email
+    })
 
-    if (existingContractor) throw new Error("Email already registered");
+    if (existingContractor) throw new Error('Email already registered')
 
     return this.contractorsRepository.register({
-      name: name,
-      email: email,
-      passwordHash: passwordHash,
-      balance: balance,
-    });
+      name,
+      email,
+      passwordHash,
+      balance
+    })
   }
 
-  async loginContractor({ email, password }) {
+  async loginContractor ({ email, password }) {
     if (!email || !password) {
-      throw new Error("Name, email and password are required");
+      throw new Error('Name, email and password are required')
     }
 
     const user = await this.findOne({
-      email: email,
-    });
+      email
+    })
 
     if (!user) {
-      throw new Error("User not found");
+      throw new Error('User not found')
     }
 
-    const checkedPassword = await bcrypt.compare(password, user.password);
+    const checkedPassword = await bcrypt.compare(password, user.password)
 
     if (!checkedPassword) {
-      throw new Error("Invalid password");
+      throw new Error('Invalid password')
     }
 
     try {
-      configDotenv();
+      configDotenv()
 
-      const SECRET_KEY = process.env.SECRET_KEY;
+      const SECRET_KEY = process.env.SECRET_KEY
 
       const token = jwt.sign(
         {
-          user_id: user.user_id,
+          user_id: user.user_id
         },
-        SECRET_KEY,
-      );
+        SECRET_KEY
+      )
 
-      return { user, token };
+      return { user, token }
     } catch (err) {
-      console.debug(err);
+      console.debug(err)
 
-      throw new Error("Error generating token.");
+      throw new Error('Error generating token.')
     }
   }
 
-  async updateContractor({ contractorId, updatedData }) {
+  async updateContractor ({ contractorId, updatedData }) {
     return await this.contractorsRepository.update({
       contractor_id: contractorId,
-      updatedData: updatedData,
-    });
+      updatedData
+    })
   }
 
-  async findOne(whereType) {
-    return this.contractorsRepository.findOne(whereType);
+  async findOne (whereType) {
+    return this.contractorsRepository.findOne(whereType)
   }
 }

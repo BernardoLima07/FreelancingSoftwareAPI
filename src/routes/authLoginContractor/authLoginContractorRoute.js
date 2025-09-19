@@ -1,11 +1,11 @@
-import express from "express";
+import express from 'express'
 
-import { ContractorLoginController } from "../../controllers/authLoginContractor/contractorLoginController.js";
+import { ContractorLoginController } from '../../controllers/authLoginContractor/contractorLoginController.js'
 
-export const authLoginContractorRouter = express.Router();
+export const authLoginContractorRouter = express.Router()
 
-const contractorLoginController = new ContractorLoginController();
+const contractorLoginController = new ContractorLoginController()
 authLoginContractorRouter.post(
-  "/contractor/login",
-  contractorLoginController.login,
-);
+  '/contractor/login',
+  contractorLoginController.login
+)

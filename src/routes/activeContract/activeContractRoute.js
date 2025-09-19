@@ -1,11 +1,11 @@
-import express from "express";
-import { ActiveContractController } from "../../controllers/activeContracts/activeContractsController.js";
+import express from 'express'
+import { ActiveContractController } from '../../controllers/activeContracts/activeContractsController.js'
 
-export const activeContractRouter = express.Router();
+export const activeContractRouter = express.Router()
 
-const activeContractController = new ActiveContractController();
+const activeContractController = new ActiveContractController()
 
 activeContractRouter.get(
-  "/contract/activesContracts/:client_id",
-  activeContractController.activeContract,
-);
+  '/contract/activesContracts/:client_id',
+  activeContractController.activeContract
+)

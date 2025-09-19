@@ -1,12 +1,12 @@
-import express from "express";
+import express from 'express'
 
-import { ContractPostController } from "../../controllers/createContract/createContractController.js";
+import { ContractPostController } from '../../controllers/createContract/createContractController.js'
 
-export const createContractRouter = express.Router();
+export const createContractRouter = express.Router()
 
-const contractPostController = new ContractPostController();
+const contractPostController = new ContractPostController()
 
 createContractRouter.post(
-  "/contract/create",
-  contractPostController.contractPost,
-);
+  '/contract/create',
+  contractPostController.contractPost
+)

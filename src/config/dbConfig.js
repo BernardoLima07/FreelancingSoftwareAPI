@@ -1,16 +1,16 @@
-import { Sequelize } from "sequelize";
+import { Sequelize } from 'sequelize'
 
-import dotenv from "dotenv";
-dotenv.config();
-const password = process.env.DB_PASSWORD;
+import dotenv from 'dotenv'
+dotenv.config()
+const password = process.env.DB_PASSWORD
 
 export const sequelize = new Sequelize(
-  "freelancingSoftwareDB",
-  "root",
+  'freelancingSoftwareDB',
+  'root',
   password,
   {
-    dialect: "sqlite",
-    host: "dev.sqlite",
-    storage: "dev.sqlite",
-  },
-);
+    dialect: 'sqlite',
+    host: 'dev.sqlite',
+    storage: 'dev.sqlite'
+  }
+)

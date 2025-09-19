@@ -1,12 +1,12 @@
-import express from "express";
+import express from 'express'
 
-import { HighestPayingClientController } from "../../controllers/highestPayingClient/highestPayingClient.js";
+import { HighestPayingClientController } from '../../controllers/highestPayingClient/highestPayingClient.js'
 
-export const highestPayingClient = express.Router();
+export const highestPayingClient = express.Router()
 
-const highestPayingClientController = new HighestPayingClientController();
+const highestPayingClientController = new HighestPayingClientController()
 
 highestPayingClient.get(
-  "/client/highestPayingClientReport",
-  highestPayingClientController.highestPayingClientsReport,
-);
+  '/client/highestPayingClientReport',
+  highestPayingClientController.highestPayingClientsReport
+)

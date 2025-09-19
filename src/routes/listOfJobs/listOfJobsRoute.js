@@ -1,9 +1,9 @@
-import express from "express";
+import express from 'express'
 
-import { ListOfJobsController } from "../../controllers/listOfJobs/listOfJobsController.js";
+import { ListOfJobsController } from '../../controllers/listOfJobs/listOfJobsController.js'
 
-export const listOfJobsRouter = express.Router();
+export const listOfJobsRouter = express.Router()
 
-const listOfJobsController = new ListOfJobsController();
+const listOfJobsController = new ListOfJobsController()
 
-listOfJobsRouter.get("/contractor/jobs", listOfJobsController.listJobs);
+listOfJobsRouter.get('/contractor/jobs', listOfJobsController.listJobs)
