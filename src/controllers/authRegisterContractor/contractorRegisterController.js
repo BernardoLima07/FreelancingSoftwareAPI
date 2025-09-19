@@ -1,24 +1,27 @@
-import { ContractorsService } from '../../services/contractors/contractorsServices.js'
+import { ContractorsService } from "../../services/contractors/contractorsServices.js";
 
-const contractorService = new ContractorsService()
+const contractorService = new ContractorsService();
 
 export class ContractorRegisterController {
   async register(req, res) {
-    const { name, email, password, balance } = req.body
+    const { name, email, password, balance } = req.body;
 
     try {
       const newContractor = await contractorService.registerContractor({
         name: name,
         email: email,
         password: password,
-        balance: balance
-      })
+        balance: balance,
+      });
       res
         .status(201)
-        .json({ msg: 'Contractor created successfully.', contractor: newContractor })
+        .json({
+          msg: "Contractor created successfully.",
+          contractor: newContractor,
+        });
     } catch (err) {
-      console.log(err)
-      res.status(400).json({ msg: 'Unable to create a Contractor.' })
+      console.log(err);
+      res.status(400).json({ msg: "Unable to create a Contractor." });
     }
   }
 }

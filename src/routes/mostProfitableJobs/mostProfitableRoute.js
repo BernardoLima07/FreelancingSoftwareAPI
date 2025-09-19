@@ -1,9 +1,12 @@
-import express from 'express'
+import express from "express";
 
-import { MostProfitableJobsController } from '../../controllers/mostProfitableJobs/mostProfitableJobs.js'
+import { MostProfitableJobsController } from "../../controllers/mostProfitableJobs/mostProfitableJobs.js";
 
-export const mostProfitableJobs = express.Router()
+export const mostProfitableJobs = express.Router();
 
-const mostProfitableJobsController = new MostProfitableJobsController()
+const mostProfitableJobsController = new MostProfitableJobsController();
 
-mostProfitableJobs.get('/contractor/job/mostProfitableJobsReport', mostProfitableJobsController.mostProfitableJobsReport)
+mostProfitableJobs.get(
+  "/contractor/job/mostProfitableJobsReport",
+  mostProfitableJobsController.mostProfitableJobsReport,
+);
