@@ -1,9 +1,7 @@
-import { setupRoutes } from './routes/setupRoutes/setupRoutes.js'
-import { seed } from './seed/seed.js'
 import express from 'express'
-
 import dotenv from 'dotenv'
 
+import { setupRoutes } from './routes/setupRoutes/setupRoutes.js'
 import { sequelize } from './config/dbConfig.js'
 
 const app = express()
@@ -13,13 +11,12 @@ app.use(express.json())
 sequelize
   .sync()
   .then(() => {
-    console.log('Database listening on...')
-    return seed()
-  })
-  .then(() => {
+    console.debug('Database listening on...')
+
     const PORT = process.env.API_PORT
+
     app.listen(PORT, () => {
-      console.log('API listening on...', PORT)
+      console.debug('API listening on...', PORT)
     })
 
     setupRoutes(app)

@@ -6,4 +6,4 @@ export const createContractRouter = express.Router()
 
 const contractPostController = new ContractPostController()
 
-createContractRouter.post('/contract/postContract', contractPostController.contractPost)
+createContractRouter.post('/contract/create', contractPostController.contractPost)

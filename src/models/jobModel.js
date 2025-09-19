@@ -9,36 +9,36 @@ JobModel.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
     },
     contractor_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       references: {
         model: ContractorModel,
-        key: 'contractor_id'
-      }
+        key: 'contractor_id',
+      },
     },
     title: {
       type: DataTypes.STRING(100),
-      allowNull: false
+      allowNull: false,
     },
     description: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
     },
     status: {
       type: DataTypes.ENUM('New', 'In progress', 'Terminated'),
       allowNull: true,
-      defaultValue: 'New'
+      defaultValue: 'New',
     },
     payment_amount: {
       type: DataTypes.DECIMAL(10, 2),
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     sequelize,
-    modelName: 'Jobs'
+    modelName: 'Jobs',
   }
 )

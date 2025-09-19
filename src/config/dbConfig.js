@@ -6,5 +6,6 @@ const password = process.env.DB_PASSWORD
 
 export const sequelize = new Sequelize('freelancingSoftwareDB', 'root', password, {
   dialect: 'sqlite',
-  host: 'dev.sqlite'
+  host: 'dev.sqlite',
+  storage: 'dev.sqlite',
 })

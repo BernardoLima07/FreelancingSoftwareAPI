@@ -1,15 +1,15 @@
-import prettier from "eslint-plugin-prettier";
-import eslintConfigPrettier from "eslint-config-prettier";
+import prettier from 'eslint-plugin-prettier'
+import eslintConfigPrettier from 'eslint-config-prettier'
 
 export default [
   {
-    files: ["**/*.js"],
+    files: ['**/*.js'],
     plugins: {
-      prettier
+      prettier,
     },
     rules: {
       ...eslintConfigPrettier.rules,
-      "prettier/prettier": "error"
-    }
-  }
-];
+      'prettier/prettier': 'error',
+    },
+  },
+]

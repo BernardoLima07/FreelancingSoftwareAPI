@@ -1,15 +1,16 @@
-name: "Freelancing API"
+name: 'Freelancing API'
 
-version: "3.9"
+version: '3.9'
 
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    ports: 
-      - "8080:8080"
+    ports:
+      - '8080:8080'
     volumes:
       - .:/app
       - /app/node_modules
+      - ./dev.sqlite:/app/dev.sqlite
     command: npm run start

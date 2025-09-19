@@ -5,7 +5,4 @@ import { EspecificContractController } from '../../controllers/especificContract
 export const especificContractRouter = express.Router()
 const contractReadController = new EspecificContractController()
 
-especificContractRouter.get(
-  '/contract/especificContracts',
-  contractReadController.especificContract
-)
+especificContractRouter.get('/contract/especific', contractReadController.especificContract)

@@ -1,14 +1,17 @@
-import { JobModel } from '../../models/jobModel.js'
+import { JobsService } from '../../services/jobs/jobsServices.js'
+
+const jobsServices = new JobsService()
 
 export class ListOfJobsController {
-  async listJobs (req, res) {
+  async listJobs(_, res) {
     try {
-      const listJobs = await JobModel.findAll({
+      const listJobs = await jobsServices.listJobs({
         attributes: ['title', 'description', 'status', 'payment_amount'],
         order: [['payment_amount', 'DESC']],
-        limit: 10
+        limit: 10,
       })
-      res.status(201).json({ msg: 'Jobs listed successfully.', listJobs })
+
+      res.status(200).json({ msg: 'Jobs listed successfully.', listJobs })
     } catch (err) {
       console.log(err)
       res.status(500).json({ msg: 'Unable to list Jobs.' })

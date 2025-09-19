@@ -1,38 +1,31 @@
-import { ContractorModel } from '../../models/contractorModel.js'
-import { JobModel } from '../../models/jobModel.js'
-import { ClientModel } from '../../models/clientModel.js'
+import { ProcessPaymentService } from '../../services/processPayment/processPaymentServices.js'
+
+const processPaymentService = new ProcessPaymentService()
 
 export class PaymentController {
-  async processPayment (req, res) {
-    const clientId = req.params.clientId
-    const jobId = req.params.jobId
+  async processPayment(req, res) {
+    const { clientId, jobId } = req.params
+
     try {
-      const job = await JobModel.findByPk(jobId)
-      if (!job) {
-        return res.status(404).json({ msg: 'Job not found.' })
+      const result = await processPaymentService.processPayment({
+        clientId,
+        jobId,
+      })
+      return res.status(200).json(result)
+    } catch (err) {
+      console.error(err.message)
+
+      let status = 500
+
+      if (err.message === 'Job not found') status = 404
+      if (err.message === 'Client not found') status = 404
+      if (err.message === 'Contractor not found') status = 404
+      if (err.message === 'Payment cannot be processed. Job is not completed') {
+        status = 400
       }
+      if (err.message === 'Insufficient balance') status = 422
 
-      if (job.status === 'Terminated') {
-        const contractor = await ContractorModel.findByPk(job.contractor_id)
-
-        const client = await ClientModel.findByPk(clientId)
-        if (!client) {
-          return res.status(404).json({ msg: 'Client not found.' })
-        }
-
-        contractor.balance += job.payment_amount
-        client.balance -= job.payment_amount
-
-        await contractor.save()
-        await client.save()
-
-        res.status(200).json({ msg: 'Payment processed successfully.' })
-      } else {
-        res.status(400).json({ msg: 'Payment cannot be processed. Job is not completed.' })
-      }
-    } catch (error) {
-      console.error(error)
-      return res.status(500).json({ msg: 'Error processing payment.' })
+      return res.status(status).json({ msg: err.message })
     }
   }
 }
