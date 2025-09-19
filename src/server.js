@@ -4,7 +4,8 @@ import express from 'express'
 
 import dotenv from 'dotenv'
 
-import { sequelize } from './database/config.js'
+import { sequelize } from './config/dbConfig.js'
+
 const app = express()
 dotenv.config()
 

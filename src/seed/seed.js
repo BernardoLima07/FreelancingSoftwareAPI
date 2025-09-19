@@ -1,8 +1,8 @@
-import { ClientModel } from '../database/models/clientModel.js'
-import { ContractorModel } from '../database/models/contractorModel.js'
-import { JobModel } from '../database/models/jobModel.js'
-import { ContractModel } from '../database/models/contractModel.js'
-import { sequelize } from '../database/config.js'
+import { ClientModel } from '../models/clientModel.js'
+import { ContractorModel } from '../models/contractorModel.js'
+import { JobModel } from '../models/jobModel.js'
+import { ContractModel } from '../models/contractModel.js'
+import { sequelize } from '../config/dbConfig.js'
 import bcrypt from 'bcryptjs'
 
 export async function seed () {

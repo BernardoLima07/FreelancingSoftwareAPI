@@ -1,47 +1,55 @@
 import express from 'express'
 
-import { registerClientRouter } from '../profilesRoutes/authRoutes/authClients/registerClientRoute.js'
-import { loginClientRouter } from '../profilesRoutes/authRoutes/authClients/loginClientRoute.js'
-
-import { registerContractorRouter } from '../profilesRoutes/authRoutes/authContractors/registerContractorRoute.js'
-import { loginContractorRouter } from '../profilesRoutes/authRoutes/authContractors/loginContractorRoute.js'
-
-import { especificContractRouter } from '../contractRoutes/contractManagementRoutes/especificContractRoute.js'
-import { activeContractRouter } from '../contractRoutes/contractManagementRoutes/activeContractRoute.js'
-
-import { mostLucrativeJobs } from '../jobRoutes/financialInsightsRoutes/financialInsightsRoute.js'
-import { highestPayingClient } from '../profilesRoutes/clientRoutes/highestPayingClientsRoutes/highestPayingClientsRoute.js'
-
-import { contractRouter } from '../contractRoutes/contractRoute.js'
-import { jobRouter } from '../jobRoutes/jobRoute.js'
-import { paymentRouter } from '../profilesRoutes/clientRoutes/processPaymentRoute/processPaymentRoute.js'
-import { updateStatusRouter } from '../updateStatusRoutes/updateStatusRoute.js'
 import { checkToken } from '../../middlewares/checkToken.js'
-import { insertMoneyRouter } from '../profilesRoutes/clientRoutes/insertMoneyRoutes/insertMoneyRoute.js'
-import { listOfJobsRouter } from '../jobRoutes/listOfJobsRoutes/listOfJobsRoute.js'
+
+import { mostProfitableJobs } from '../mostProfitableJobs/mostProfitableRoute.js'
+import { processPaymentRouter } from '../processPayment/processPaymentRoute.js'
+import { createJobRouter } from '../createJob/createJob.js'
+import { createContractRouter } from '../createContract/createContractRoute.js'
+import { authRegisterContractorRouter } from '../authRegisterContractor/authRegisterContractorRoute.js'
+import { authRegisterClientRouter } from '../authRegisterClient/authRegisterClientRoute.js'
+import { authLoginContractorRouter } from '../authLoginContractor/authLoginContractorRoute.js'
+import { authLoginClientRouter } from '../authLoginClient/authLoginClientRoute.js'
+import { insertMoneyRouter } from '../insertMoney/insertMoneyRoute.js'
+import { highestPayingClient } from '../highestPayingClients/highestPayingClientsRoute.js'
+import { activeContractRouter } from '../activeContract/activeContractRoute.js'
+import { especificContractRouter } from '../especificContract/especificContractRoute.js'
+import { updateStatusRouter } from '../updateStatus/updateStatusRoute.js'
+import { listOfJobsRouter } from '../listOfJobs/listOfJobsRoute.js'
 
 export const setupRoutes = (app) => {
   const routes = [
-    contractRouter,
     especificContractRouter,
     activeContractRouter,
-    jobRouter,
-    mostLucrativeJobs,
+    createJobRouter,
+    mostProfitableJobs,
     highestPayingClient,
-    paymentRouter,
+    processPaymentRouter,
     updateStatusRouter,
     insertMoneyRouter,
-    listOfJobsRouter
+    listOfJobsRouter,
+    mostProfitableJobs,
+    processPaymentRouter,
+    listOfJobsRouter,
+    insertMoneyRouter,
+    highestPayingClient,
+    especificContractRouter,
+    createJobRouter,
+    createContractRouter,
+    authRegisterContractorRouter,
+    authRegisterClientRouter,
+    authLoginContractorRouter,
+    authLoginClientRouter,
   ]
 
   const router = express.Router()
   routes.forEach((route) => {
     router.use(
       '/api/auth',
-      registerClientRouter,
-      loginClientRouter,
-      registerContractorRouter,
-      loginContractorRouter
+      authRegisterClientRouter,
+      authLoginClientRouter,
+      authRegisterContractorRouter,
+      authLoginContractorRouter
     )
     router.use('/api/routes', checkToken, route)
   })
