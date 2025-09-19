@@ -1,8 +1,8 @@
-import { Model, DataTypes } from "sequelize";
-import { sequelize } from "../config/dbConfig.js";
-import { ClientModel } from "./clientModel.js";
-import { ContractorModel } from "./contractorModel.js";
-import { JobModel } from "./jobModel.js";
+import { Model, DataTypes } from 'sequelize'
+import { sequelize } from '../config/dbConfig.js'
+import { ClientModel } from './clientModel.js'
+import { ContractorModel } from './contractorModel.js'
+import { JobModel } from './jobModel.js'
 
 export class ContractModel extends Model {}
 ContractModel.init(
@@ -18,7 +18,7 @@ ContractModel.init(
       allowNull: false,
       references: {
         model: ClientModel,
-        key: "client_id",
+        key: 'client_id',
       },
     },
     contractor_id: {
@@ -26,7 +26,7 @@ ContractModel.init(
       allowNull: false,
       references: {
         model: ContractorModel,
-        key: "contractor_id",
+        key: 'contractor_id',
       },
     },
     job_id: {
@@ -34,7 +34,7 @@ ContractModel.init(
       allowNull: false,
       references: {
         model: JobModel,
-        key: "job_id",
+        key: 'job_id',
       },
     },
     start_date: {
@@ -46,13 +46,13 @@ ContractModel.init(
       allowNull: true,
     },
     status: {
-      type: DataTypes.ENUM("New", "In progress", "Terminated"),
-      defaultValue: "New",
+      type: DataTypes.ENUM('New', 'In progress', 'Terminated'),
+      defaultValue: 'New',
       allowNull: true,
     },
   },
   {
     sequelize,
-    modelName: "Contracts",
-  },
-);
+    modelName: 'Contracts',
+  }
+)

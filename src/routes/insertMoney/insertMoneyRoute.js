@@ -1,9 +1,9 @@
-import express from "express";
+import express from 'express'
 
-import { InsertMoneyController } from "../../controllers/insertMoney/insertMoneyController.js";
+import { InsertMoneyController } from '../../controllers/insertMoney/insertMoneyController.js'
 
-export const insertMoneyRouter = express.Router();
+export const insertMoneyRouter = express.Router()
 
-const insertMoneyController = new InsertMoneyController();
+const insertMoneyController = new InsertMoneyController()
 
-insertMoneyRouter.put("/client/insertMoney", insertMoneyController.insertMoney);
+insertMoneyRouter.put('/client/insertMoney', insertMoneyController.insertMoney)

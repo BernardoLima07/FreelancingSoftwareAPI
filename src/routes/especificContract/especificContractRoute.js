@@ -1,11 +1,8 @@
-import express from "express";
+import express from 'express'
 
-import { EspecificContractController } from "../../controllers/especificContract/especificContractController.js";
+import { EspecificContractController } from '../../controllers/especificContract/especificContractController.js'
 
-export const especificContractRouter = express.Router();
-const contractReadController = new EspecificContractController();
+export const especificContractRouter = express.Router()
+const contractReadController = new EspecificContractController()
 
-especificContractRouter.get(
-  "/contract/especific",
-  contractReadController.especificContract,
-);
+especificContractRouter.get('/contract/especific', contractReadController.especificContract)

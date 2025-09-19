@@ -1,4 +1,4 @@
-import { ClientModel } from "../../models/clientModel.js";
+import { ClientModel } from '../../models/clientModel.js'
 
 export class ClientsRepository {
   async findAll({ limit = 10, attributes, whereType }) {
@@ -6,11 +6,11 @@ export class ClientsRepository {
       where: whereType,
       attributes,
       limit,
-    });
+    })
   }
 
   async findById(clientId) {
-    return await ClientModel.findByPk(clientId);
+    return await ClientModel.findByPk(clientId)
   }
 
   async register({ name, email, passwordHash, balance }) {
@@ -19,16 +19,16 @@ export class ClientsRepository {
       email,
       password: passwordHash,
       balance,
-    });
+    })
   }
 
   async findOne(whereType) {
     return await ClientModel.findOne({
       where: whereType,
-    });
+    })
   }
 
   async update({ clientId, updatedData }) {
-    return await ClientModel.update(updatedData, { where: clientId });
+    return await ClientModel.update(updatedData, { where: clientId })
   }
 }

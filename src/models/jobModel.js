@@ -1,6 +1,6 @@
-import { Model, DataTypes } from "sequelize";
-import { sequelize } from "../config/dbConfig.js";
-import { ContractorModel } from "./contractorModel.js";
+import { Model, DataTypes } from 'sequelize'
+import { sequelize } from '../config/dbConfig.js'
+import { ContractorModel } from './contractorModel.js'
 
 export class JobModel extends Model {}
 JobModel.init(
@@ -16,7 +16,7 @@ JobModel.init(
       allowNull: false,
       references: {
         model: ContractorModel,
-        key: "contractor_id",
+        key: 'contractor_id',
       },
     },
     title: {
@@ -28,9 +28,9 @@ JobModel.init(
       allowNull: false,
     },
     status: {
-      type: DataTypes.ENUM("New", "In progress", "Terminated"),
+      type: DataTypes.ENUM('New', 'In progress', 'Terminated'),
       allowNull: true,
-      defaultValue: "New",
+      defaultValue: 'New',
     },
     payment_amount: {
       type: DataTypes.DECIMAL(10, 2),
@@ -39,6 +39,6 @@ JobModel.init(
   },
   {
     sequelize,
-    modelName: "Jobs",
-  },
-);
+    modelName: 'Jobs',
+  }
+)

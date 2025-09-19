@@ -1,4 +1,4 @@
-import { JobModel } from "../../models/jobModel.js";
+import { JobModel } from '../../models/jobModel.js'
 
 export class JobRepository {
   async findAll({ limit = 10, attributes, order, whereType }) {
@@ -7,24 +7,24 @@ export class JobRepository {
       attributes,
       order,
       limit,
-    });
+    })
   }
 
   async findById(jobId) {
-    return JobModel.findByPk(jobId);
+    return JobModel.findByPk(jobId)
   }
 
   async findOne(whereType) {
     return await JobModel.findOne({
       where: whereType,
-    });
+    })
   }
 
   create(jobData) {
-    return JobModel.create(jobData);
+    return JobModel.create(jobData)
   }
 
   async update({ jobId, updateData }) {
-    return await JobModel.update(updateData, { where: { jobId } });
+    return await JobModel.update(updateData, { where: { jobId } })
   }
 }

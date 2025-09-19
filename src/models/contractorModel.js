@@ -1,5 +1,5 @@
-import { Model, DataTypes } from "sequelize";
-import { sequelize } from "../config/dbConfig.js";
+import { Model, DataTypes } from 'sequelize'
+import { sequelize } from '../config/dbConfig.js'
 
 export class ContractorModel extends Model {}
 ContractorModel.init(
@@ -30,6 +30,6 @@ ContractorModel.init(
   },
   {
     sequelize,
-    modelName: "Contractors",
-  },
-);
+    modelName: 'Contractors',
+  }
+)

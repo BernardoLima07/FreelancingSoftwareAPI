@@ -1,4 +1,4 @@
-import { ContractModel } from "../../models/contractModel.js";
+import { ContractModel } from '../../models/contractModel.js'
 
 export class ContractsRepository {
   async findAll({ limit = 10, attributes, whereType }) {
@@ -6,24 +6,24 @@ export class ContractsRepository {
       where: whereType,
       attributes,
       limit,
-    });
+    })
   }
 
   async findById(contractorId) {
-    return await ContractModel.findByPk(contractorId);
+    return await ContractModel.findByPk(contractorId)
   }
 
   async create(jobData) {
-    return await ContractModel.create(jobData);
+    return await ContractModel.create(jobData)
   }
 
   async findOne(whereType) {
     return await ContractModel.findOne({
       where: whereType,
-    });
+    })
   }
 
   async update(contractId, updatedData) {
-    return await ContractModel.update(updatedData, { where: contractId });
+    return await ContractModel.update(updatedData, { where: contractId })
   }
 }
