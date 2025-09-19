@@ -39,7 +39,7 @@ export const setupRoutes = (app) => {
     authRegisterContractorRouter,
     authRegisterClientRouter,
     authLoginContractorRouter,
-    authLoginClientRouter,
+    authLoginClientRouter
   ]
 
   const router = express.Router()
