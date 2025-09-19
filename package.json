@@ -6,7 +6,9 @@
   "scripts": {
     "start": "nodemon src/server.js",
     "test": "jest --passWithNoTests",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "npx prettier . --write",
+    "format:check": "npx prettier . --check"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,7 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "npm": "^10.5.1",
+    "prettier": "^3.6.2",
     "sequelize": "^6.37.7",
     "sqlite3": "^5.1.7"
   },
