@@ -1,12 +1,14 @@
-import { ContractModel } from '../../models/contractModel.js'
+import { ContractsService } from '../../services/contracts/contractsServices.js'
+
+const contractServices = new ContractsService();
 
 export class ActiveContractController {
-  async activeContract (req, res) {
+  async activeContract(req, res) {
     const clientId = req.params.client_id
 
     try {
-      const activeContracts = await ContractModel.findAll({
-        where: {
+      const activeContracts = contractServices.listContracts({
+        whereType: {
           client_id: clientId,
           status: 'In progress'
         }

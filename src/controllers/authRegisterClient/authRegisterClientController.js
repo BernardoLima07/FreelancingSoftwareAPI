@@ -1,25 +1,19 @@
-import bcrypt from 'bcryptjs'
-import { ClientModel } from '../../models/clientModel.js'
+import { ClientsService } from '../../services/clients/clientsServices.js'
+
+const clientService = new ClientsService()
 
 export class ClientRegisterController {
   async register (req, res) {
     const { name, email, password, balance } = req.body
 
-    const salt = await bcrypt.genSalt(12)
-    const passwordHash = await bcrypt.hash(password, salt)
-    const userExists = await ClientModel.findOne({ email })
-
-    if (userExists) {
-      console.log('Exist')
-    }
-
     try {
-      const newClient = await ClientModel.create({
-        name,
-        email,
-        password: passwordHash,
-        balance
+      const newClient = await clientService.registerClient({
+        name: name,
+        email: email,
+        password: password,
+        balance: balance
       })
+
       res
         .status(201)
         .json({ msg: 'Client created successfully.', client: newClient })

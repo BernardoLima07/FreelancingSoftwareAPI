@@ -12,4 +12,5 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+      - ./dev.sqlite:/app/dev.sqlite
     command: npm run start

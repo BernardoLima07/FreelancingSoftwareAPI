@@ -5,4 +5,4 @@ import { ContractorRegisterController } from '../../controllers/authRegisterCont
 export const authRegisterContractorRouter = express.Router()
 
 const contractorRegisterController = new ContractorRegisterController()
-authRegisterContractorRouter.post('/contractor/registerContractor', contractorRegisterController.register)
+authRegisterContractorRouter.post('/contractor/register', contractorRegisterController.register)

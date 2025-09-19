@@ -13,7 +13,7 @@ JobModel.init(
     },
     contractor_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       references: {
         model: ContractorModel,
         key: 'contractor_id'

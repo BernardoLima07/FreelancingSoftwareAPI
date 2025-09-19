@@ -18,7 +18,9 @@ import { updateStatusRouter } from '../updateStatus/updateStatusRoute.js'
 import { listOfJobsRouter } from '../listOfJobs/listOfJobsRoute.js'
 
 export const setupRoutes = (app) => {
-  const routes = [
+  const router = express.Router()
+
+  const commonRoutes = [
     especificContractRouter,
     activeContractRouter,
     createJobRouter,
@@ -36,22 +38,24 @@ export const setupRoutes = (app) => {
     especificContractRouter,
     createJobRouter,
     createContractRouter,
-    authRegisterContractorRouter,
-    authRegisterClientRouter,
-    authLoginContractorRouter,
-    authLoginClientRouter
   ]
 
-  const router = express.Router()
-  routes.forEach((route) => {
+  const authRoutes = [
+    authRegisterClientRouter,
+    authLoginClientRouter,
+    authRegisterContractorRouter,
+    authLoginContractorRouter
+  ]
+
+  commonRoutes.forEach((route) => {
+    router.use('/api/routes', checkToken, route)
+  })
+
+  authRoutes.forEach((route) => {
     router.use(
       '/api/auth',
-      authRegisterClientRouter,
-      authLoginClientRouter,
-      authRegisterContractorRouter,
-      authLoginContractorRouter
+      route
     )
-    router.use('/api/routes', checkToken, route)
   })
 
   app.use(router)

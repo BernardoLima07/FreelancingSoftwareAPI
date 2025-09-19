@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize'
 import { sequelize } from '../config/dbConfig.js'
 
-export class ContractorModel extends Model {}
+export class ContractorModel extends Model { }
 ContractorModel.init(
   {
     contractor_id: {

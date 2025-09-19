@@ -13,3 +13,4 @@ Thumbs.db
 .vscode/
 FreelancingAPI/
 dev.sqlite
+.dockerignore

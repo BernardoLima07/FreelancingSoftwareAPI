@@ -7,6 +7,6 @@ export const insertMoneyRouter = express.Router()
 const insertMoneyController = new InsertMoneyController()
 
 insertMoneyRouter.put(
-  '/client/insertMoney/:client_id',
+  '/client/insertMoney',
   insertMoneyController.insertMoney
 )

@@ -1,24 +1,17 @@
-import bcrypt from 'bcryptjs'
-import { ContractorModel } from '../../models/contractorModel.js'
+import { ContractorsService } from '../../services/contractors/contractorsServices.js'
+
+const contractorService = new ContractorsService()
 
 export class ContractorRegisterController {
-  async register (req, res) {
+  async register(req, res) {
     const { name, email, password, balance } = req.body
 
-    const salt = await bcrypt.genSalt(12)
-    const passwordHash = await bcrypt.hash(password, salt)
-    const userExists = await ContractorModel.findOne({ email })
-
-    if (userExists) {
-      console.log('Exist')
-    }
-
     try {
-      const newContractor = await ContractorModel.create({
-        name,
-        email,
-        password: passwordHash,
-        balance
+      const newContractor = await contractorService.registerContractor({
+        name: name,
+        email: email,
+        password: password,
+        balance: balance
       })
       res
         .status(201)

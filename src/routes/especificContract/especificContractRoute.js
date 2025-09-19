@@ -6,6 +6,6 @@ export const especificContractRouter = express.Router()
 const contractReadController = new EspecificContractController()
 
 especificContractRouter.get(
-  '/contract/especificContracts',
+  '/contract/especific',
   contractReadController.especificContract
 )
