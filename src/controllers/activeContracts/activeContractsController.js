@@ -1,26 +1,30 @@
 import { ContractModel } from '../../models/contractModel.js'
-import { ResponseManager } from '../../responses/responseManagement.js'
 
 export class ActiveContractController {
-  async activeContract (req, res) {
+  async activeContract(req, res) {
     const clientId = req.params.client_id
 
     try {
       const activeContracts = await ContractModel.findAll({
         where: {
-          clientId,
+          client_id: clientId,
           status: 'In progress'
         }
       })
 
       if (!activeContracts.length) {
-        ResponseManager(res, activeContracts).returnResponse()
+        return res.status(404).json({
+          msg: 'No active contracts found for the client.'
+        })
       }
 
-      ResponseManager(res, activeContracts).returnResponse()
+      res.status(200).json({
+        msg: 'Active contracts read successfully.',
+        contracts: activeContracts
+      })
     } catch (err) {
       console.error(err)
-      ResponseManager(res).returnResponse()
+      res.status(500).json({ msg: 'Unable to read the active contracts.' })
     }
   }
 }

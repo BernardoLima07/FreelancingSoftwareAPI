@@ -5,4 +5,4 @@ import { ClientLoginController } from '../../controllers/authLoginClient/authLog
 export const authLoginClientRouter = express.Router()
 
 const clientLoginController = new ClientLoginController()
-authLoginClientRouter.post('/client/loginClient', clientLoginController.login)
+authLoginClientRouter.post('/client/login', clientLoginController.login)

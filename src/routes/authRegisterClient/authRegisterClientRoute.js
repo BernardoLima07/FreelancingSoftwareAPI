@@ -5,4 +5,4 @@ import { ClientRegisterController } from '../../controllers/authRegisterClient/a
 export const authRegisterClientRouter = express.Router()
 
 const clientRegisterController = new ClientRegisterController()
-authRegisterClientRouter.post('/client/registerClient', clientRegisterController.register)
+authRegisterClientRouter.post('/client/register', clientRegisterController.register)
