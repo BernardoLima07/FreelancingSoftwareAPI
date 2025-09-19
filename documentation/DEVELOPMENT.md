@@ -16,8 +16,8 @@ To post a new job: _/api/routes/contractor/job/postJob_ ---> Title, description,
 
 To post a new contract: _/api/routes/contract/postContract_ ---> Client_id, contractor_id, job_id, start_date, end_date and status are required.
 
-To get the list of actives contracts: _/api/routes/contract/activesContracts/contract_id_ ---> client_id is required.
-To get a especific contract: _/api/routes/contract/especificContracts_ ---> status is required.
+To get the list of actives contracts: _/api/routes/contract/activesContracts/contract_id_ ---> client*id is required.
+To get a especific contract: */api/routes/contract/especificContracts\_ ---> status is required.
 
 To get the list of most lucrative jobs: _/api/routes/contractor/job/mostProfitableJobsReport_
 

@@ -1,46 +1,46 @@
-import { ContractsRepository } from '../../repository/contracts/contractsRepository.js'
+import { ContractsRepository } from "../../repository/contracts/contractsRepository.js";
 
 export class ContractsService {
-  constructor () {
-    this.contractsRepository = new ContractsRepository()
+  constructor() {
+    this.contractsRepository = new ContractsRepository();
   }
 
-  async listContracts ({
+  async listContracts({
     limit = 10,
-    attributes = ['id', 'title', 'status', 'payment_amount'],
-    whereType = {}
+    attributes = ["id", "title", "status", "payment_amount"],
+    whereType = {},
   }) {
     return this.contractsRepository.findAll({
       limit,
       attributes,
-      whereType
-    })
+      whereType,
+    });
   }
 
-  async getContractById (contractId) {
-    const contract = await this.contractsRepository.findById(contractId)
+  async getContractById(contractId) {
+    const contract = await this.contractsRepository.findById(contractId);
 
-    if (!contract) throw new Error(`Contract with ID ${contractId} not found`)
+    if (!contract) throw new Error(`Contract with ID ${contractId} not found`);
 
-    return contract
+    return contract;
   }
 
-  async createContract (contractData) {
+  async createContract(contractData) {
     if (!contractData.title || !contractData.payment_amount) {
-      throw new Error('Title and payment_amount are required')
+      throw new Error("Title and payment_amount are required");
     }
 
-    return this.contractsRepository.create(contractData)
+    return this.contractsRepository.create(contractData);
   }
 
-  async update ({ contractId, updatedData }) {
+  async update({ contractId, updatedData }) {
     return await this.contractsRepository.update({
       contract_id: contractId,
-      updatedData
-    })
+      updatedData,
+    });
   }
 
-  async findOne (whereType) {
-    return this.contractsRepository.findOne(whereType)
+  async findOne(whereType) {
+    return this.contractsRepository.findOne(whereType);
   }
 }

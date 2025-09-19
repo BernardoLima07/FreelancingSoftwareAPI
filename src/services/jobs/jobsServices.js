@@ -1,30 +1,30 @@
-import { JobRepository } from '../../repository/jobs/jobsRepository.js'
+import { JobRepository } from "../../repository/jobs/jobsRepository.js";
 
 export class JobsService {
-  constructor () {
-    this.jobRepository = new JobRepository()
+  constructor() {
+    this.jobRepository = new JobRepository();
   }
 
-  async listJobs ({ limit = 10, attributes, order, whereType }) {
+  async listJobs({ limit = 10, attributes, order, whereType }) {
     return await this.jobRepository.findAll({
       limit,
       attributes,
       order,
-      whereType
-    })
+      whereType,
+    });
   }
 
-  async createJob (jobData) {
+  async createJob(jobData) {
     if (!jobData.title || !jobData.payment_amount) {
-      throw new Error('Title and payment amount are required')
+      throw new Error("Title and payment amount are required");
     }
-    return await this.jobRepository.create(jobData)
+    return await this.jobRepository.create(jobData);
   }
 
-  async update ({ jobId, updatedData }) {
+  async update({ jobId, updatedData }) {
     return await this.jobRepository.update({
       jobId,
-      updateData: updatedData
-    })
+      updateData: updatedData,
+    });
   }
 }

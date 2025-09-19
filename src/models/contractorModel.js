@@ -1,5 +1,5 @@
-import { Model, DataTypes } from 'sequelize'
-import { sequelize } from '../config/dbConfig.js'
+import { Model, DataTypes } from "sequelize";
+import { sequelize } from "../config/dbConfig.js";
 
 export class ContractorModel extends Model {}
 ContractorModel.init(
@@ -8,28 +8,28 @@ ContractorModel.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING(100),
-      allowNull: false
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING(100),
-      allowNull: false
+      allowNull: false,
     },
     password: {
       type: DataTypes.STRING(100),
-      allowNull: false
+      allowNull: false,
     },
     balance: {
       type: DataTypes.DECIMAL(10, 2),
       defaultValue: 0,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   },
   {
     sequelize,
-    modelName: 'Contractors'
-  }
-)
+    modelName: "Contractors",
+  },
+);
