@@ -1,7 +1,7 @@
 import { ContractModel } from '../../models/contractModel.js'
 
 export class ActiveContractController {
-  async activeContract(req, res) {
+  async activeContract (req, res) {
     const clientId = req.params.client_id
 
     try {
