@@ -37,16 +37,10 @@ jobs:
           container-name: FreelancingAPIContainer-3
           image: 346871994774.dkr.ecr.us-east-1.amazonaws.com/freelancingapi-app:latest
 
-      - name: Register ECS task definition
-        id: register-task-def
-        uses: aws-actions/amazon-ecs-register-task-definition@v1
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-
       - name: Deploy ECS Service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ${{ steps.register-task-def.outputs.task-definition-arn }}
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: FreelancingAPIService
           cluster: FreelancingAPICluster
           wait-for-service-stability: true
