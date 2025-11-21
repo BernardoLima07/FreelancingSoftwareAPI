@@ -33,7 +33,7 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: ecs_task_definition.json
+          task-definition: .github/jsons/ecs_task_definition.json
           container-name: FreelancingAPIContainer-3
           image: 346871994774.dkr.ecr.us-east-1.amazonaws.com/freelancingapi-app:latest
 
