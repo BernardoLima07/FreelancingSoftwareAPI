@@ -39,7 +39,6 @@
         }
     ],
     "cpu": "512",
-    "enableFaultInjection": false,
     "executionRoleArn": "arn:aws:iam::346871994774:role/ecsTaskExecutionRole",
     "family": "FreelancingAPITaskDefinition-3",
     "memory": "1024",
